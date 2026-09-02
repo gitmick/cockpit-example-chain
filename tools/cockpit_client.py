@@ -5,9 +5,18 @@ reaching for the binaries underneath: they drive the same surface a Claude sessi
 this file does any of the work — cockpit_publish runs the step, commits, signs and republishes the
 union; this only carries the request there and the answer back.
 """
-import json, os, subprocess
+import json, os, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# COCKPIT_TRACE=1 prints the JSON-RPC actually exchanged. Useful when the question is "what did the
+# cockpit get told", which is not always what a script meant to tell it.
+TRACE = os.environ.get("COCKPIT_TRACE") == "1"
+
+
+def _trace(direction, msg):
+    if TRACE:
+        print(f"{direction} {json.dumps(msg, indent=2, sort_keys=True)}", file=sys.stderr)
 
 
 class Cockpit:
@@ -23,6 +32,7 @@ class Cockpit:
         self._send({"jsonrpc": "2.0", "method": "notifications/initialized", "params": {}})
 
     def _send(self, msg):
+        _trace("-->", msg)
         self.p.stdin.write(json.dumps(msg) + "\n")
         self.p.stdin.flush()
 
@@ -34,6 +44,7 @@ class Cockpit:
             if not line:
                 raise SystemExit("the cockpit closed its output before answering")
             msg = json.loads(line)
+            _trace("<--", msg)
             if msg.get("id") == self.n:
                 if "error" in msg:
                     raise SystemExit(f"{method} failed: {msg['error']}")
