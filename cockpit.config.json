@@ -1,0 +1,24 @@
+{
+  "repo": { "owner": "gitmick", "name": "cockpit-example-chain" },
+  "paths": {
+    "plankton_dir": "registry/plankton",
+    "nekton_dir": "registry/nekton",
+    "templates_dir": "templates",
+    "keys_dir": "keys",
+    "bin_dir": "bin"
+  },
+  "identity": {
+    "session_id": "session-1",
+    "plankton_key": "keys/session-1.key",
+    "nekton_key": "keys/session-1-claims.key"
+  },
+  "verbs": { "publish": true, "say": true, "ask": true },
+  "claims": { "allowedTemplates": ["reproduces", "working-on"] },
+  "trust": { "tiers": { "self": ["registry/keys/session-1.pub", "registry/keys/session-1-claims.pub"] } },
+  "reproduction": { "requiredLevel": "L0" },
+  "union": { "publish": true },
+  "execution": {
+    "image": "oci://python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea",
+    "network": false
+  }
+}
