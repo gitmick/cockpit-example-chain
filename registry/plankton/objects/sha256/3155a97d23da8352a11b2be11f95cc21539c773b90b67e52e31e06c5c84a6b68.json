@@ -6,6 +6,10 @@
     "signatures": [
       {
         "keyid": "d7984beee08effc9",
+        "sig": "83HmfZp08Ue8IVJ066CKrNhWpxmnGjMFdyNcnXXwguFcINiPt9B9n2ny1WHcfkCBWMVZICo1QkiWPSwnBERyDQ=="
+      },
+      {
+        "keyid": "d7984beee08effc9",
         "sig": "b01WtzRXMNKqM7Zr9xDbsss9vHCB3o+kmrvZLcFN+iP5qM0jY646UgHZTp6OFxzPkY+9h38uiiXwd1/7LablBw=="
       },
       {
