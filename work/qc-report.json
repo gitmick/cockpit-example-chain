@@ -1,0 +1,9 @@
+{
+  "dropped": {
+    "response is the -999 not-measured sentinel": 2,
+    "response missing": 3,
+    "weight is zero, which no subject has": 2
+  },
+  "kept": 113,
+  "read": 120
+}
