@@ -1,0 +1,8 @@
+{
+  "form": "response ~ intercept + slope * dose_mg",
+  "intercept": 18.1415,
+  "n": 113,
+  "r2": 0.9826,
+  "residualSd": 11.0011,
+  "slope": 2.3872
+}
