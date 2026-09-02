@@ -51,6 +51,12 @@ def main():
             previous_outputs[path] = h
         for line in out.get("stdout", "").splitlines():
             print(f"  said      {line}")
+        # Only the cockpit can report this, and only when it ran the command itself: files the run
+        # touched that this publish did not name. Not an error — a temp file is legitimate — but an
+        # OUTPUT produced and not declared would otherwise be invisible until the chain failed to
+        # join much later.
+        for path in out.get("undeclaredChanges", []):
+            print(f"  ALSO      {path}  (changed, not declared)")
     c.close()
 
     print("\nthe chain, by shared hash:")
