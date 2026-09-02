@@ -8,3 +8,5 @@ bin/
 
 # bin/ is not vendored: the kernel binaries and the cockpit are built by setup.sh from checkouts,
 # so a clone cannot end up running a kernel two minor versions behind without anyone noticing.
+__pycache__/
+*.pyc
